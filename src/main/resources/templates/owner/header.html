@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org"
+>
+<head th:fragment="header">
+  <meta charset="UTF-8">
+  <title>Social Media Blog</title>
+  <link th:href="@{/webjars/bootstrap/5.3.2/css/bootstrap.min.css}" rel="stylesheet" />
+  <link th:href="@{/css/style.css}" rel="stylesheet" />
+  <script th:src="@{/js/masonry.pkgd.min.js}" defer></script>
+</head>
+<body>
+<nav class="navbar sticky-top navbar-expand-lg navbar-dark bg-dark" th:fragment="navbar">
+  <div class="container-fluid">
+    <a class="navbar-brand" href="#">Social Media Blog App</a>
+      <div class="navbar-nav">
+        <button class="nav-item">
+          <a class="nav-link active" aria-current="page" th:href="@{/}">All Posts</a>
+        </button>
+        <button class="nav-item">
+          <a class="nav-link active" aria-current="page" th:href="@{/owner/posts}">My Posts</a>
+        </button>
+        <button class="nav-item">
+          <a class="nav-link" th:href="@{/owner/posts/newpost}">New Post</a>
+        </button>
+        <button class="nav-item">
+          <a class="nav-link" th:href="@{/owner/posts/comments}">Comments</a>
+        </button>
+        <button class="nav-item">
+          <a class="nav-link" th:href="@{/signout}">Sign Out</a>
+        </button>
+      </div>
+  </div>
+</nav>
+</body>
+</html>

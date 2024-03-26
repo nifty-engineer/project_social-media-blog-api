@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="https://www.thymeleaf.org"
+>
+<div th:replace="owner/header :: header"></div>
+<body class="view-body">
+<div th:replace="owner/header :: navbar"></div>
+<br /><br />
+<div class="container">
+  <div class="row col-md-8 offset-md-2">
+    <div class="card px-0">
+      <div class="card-header" >
+        <h2 class="text-center">Update Post</h2>
+      </div>
+      <div class="card-body">
+        <form role="form" method="post" th:action="@{/owner/posts/{post_id}(post_id=${post.post_id})}" th:object="${post}">
+<!--        <form role="form" onsubmit="updatePostUsingPatch()">-->
+          <input type="hidden" th:field="*{posted_by}">
+          <input type="hidden" th:field="*{time_posted_epoch}">
+          <div class="mb-3">
+            <label class="form-label">Title</label>
+            <input
+                    type="text"
+                    class="form-control"
+                    id="title"
+                    placeholder="Enter post title"
+                    name="title"
+                    th:field="*{post_title}"
+            />
+            <p th:if="${#fields.hasErrors('post_title')}" class="text-danger"
+               th:errors="*{post_title}"></p>
+          </div>
+          <div class="mb-3">
+            <label class="form-label">Summary</label>
+            <textarea
+                    class="form-control"
+                    id="summary"
+                    placeholder="Enter post summary"
+                    rows="3"
+                    name="summary"
+                    th:field="*{post_summary}"
+            ></textarea>
+            <p th:if="${#fields.hasErrors('post_summary')}" class="text-danger"
+               th:errors="*{post_summary}"></p>
+          </div>
+          <div class="mb-3">
+            <label class="form-label">Text</label>
+            <textarea
+                class="form-control"
+                id="text"
+                placeholder="Enter post text"
+                rows="3"
+                name="text"
+                th:field="*{post_text}"></textarea>
+            <p th:if="${#fields.hasErrors('post_text')}" class="text-danger"
+               th:errors="*{post_text}"></p>
+          </div>
+          <button type="submit" class="btn btn-primary">Submit</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+<br><br><br><br><br><br><br><br><br>
+<div th:replace="owner/footer :: footer"></div>
+<script src="https://code.jquery.com/jquery-3.7.1.min.js"
+        integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo="
+        crossorigin="anonymous"></script>
+<script src="https://cdn.ckeditor.com/ckeditor5/40.1.0/classic/ckeditor.js"></script>
+<script>
+        ClassicEditor
+                .create( document.querySelector( '#text' ) )
+                .then( editor => {
+                        console.log( text );
+                } )
+                .catch( error => {
+                        console.error( error );
+                } );
+</script>
+<script>
+    async function updatePostUsingPatch() {
+      document.querySelector('.card-body').addEventListener('submit',
+          function(event) {
+          event.preventDefault();
+          try {
+          const response = await fetch("/owner/posts/{post_id}", {
+            method: "PATCH",
+            headers: {
+             "Content-Type": "application/json",
+           },
+           body: JSON.stringify(${post}),
+         });
+          const data = await response.json();
+             return data;
+          }
+           catch(err) {
+               console.error(`${err.message}`);
+           }
+        }
+    }
+</script>
+</body>
+</html>

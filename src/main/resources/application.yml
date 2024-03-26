@@ -1,0 +1,32 @@
+spring:
+  datasource:
+#    platform: postgres
+    url: jdbc:postgresql://localhost:5432/socialmediablog
+    username: postgres
+    password: postgres,8
+  jpa:
+    hibernate:
+      ddl-auto: update
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.PostgreSQLDialect
+    show-sql: true
+    format-sql: true
+    defer-datasource-initialization: true
+  security:
+    user:
+      name: admin
+      password: adminsite
+      roles: guest
+
+
+
+#spring:
+#  datasource:
+#    driver-class-name: org.postgresql.Driver
+#    password: postgres,8
+#    url: jdbc:postgresql://localhost:5432/socialmediablog
+#    username: postgres
+#  jpa:
+#    hibernate:
+#      ddl-auto: create

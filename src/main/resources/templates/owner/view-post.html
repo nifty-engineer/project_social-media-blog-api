@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en"
+  xmlns:th="https://www.thymeleaf.org"
+>
+<div th:replace="owner/header :: header"></div>
+<body style="position:relative">
+<div th:replace="owner/header :: navbar"></div>
+<div class="container">
+  <div class="row">
+    <div class="col-md-8 offset-md-2">
+      <br><br>
+      <h2 th:text="${post.post_title}"></h2>
+      <br>
+      <h4><cite th:text="${post.post_summary}"></cite></h4>
+      <hr/><br>
+      <div th:utext="${post.post_text}">
+      </div>
+    </div>
+  </div>
+</div>
+<br><br><br><br><br><br><br><br><br>
+<div th:replace="owner/footer :: footer"></div>
+</body>
+</html>

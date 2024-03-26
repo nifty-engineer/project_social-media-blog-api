@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="https://www.thymeleaf.org"
+>
+<div th:replace="guest/header :: header"></div>
+<body class="view-body">
+<div th:replace="guest/header :: navbar"></div>
+<br/>
+<div class="container">
+    <br><br>
+    <!--            search bar-->
+    <div th:replace="guest/search :: search"></div>
+    <br><br>
+    <div class="grid" data-masonry='{ "itemSelector": ".grid-item" }'>
+        <div class="grid-item col-md-3 col mb-2" th:each="post : ${postsResponse}">
+            <div class="card p-3">
+                <blockquote class="blockquote mb-0 card-body">
+                    <body>
+                    <h3 class="block-body">
+                        <a class="block-title" th:href="@{/posts/{post_id}(post_id=${post.post_id})}"
+                           th:text="${post.post_title}">
+                            <em>Post title</em>
+                        </a>
+                    </h3>
+                    <span class="block-body" th:utext="${post.post_summary}"></span>
+                    <a class="block-body block-body__link" th:href="@{/posts/{post_id}(post_id=${post.post_id})}"><em>
+                        read more</em></a>
+                    </body>
+                    <footer class="blockquote-footer mb-0 mt-auto">
+                        <div>
+                            <small>
+                                Posted by <cite class="text-muted created-by"
+                                                th:text="${post.posted_by.fullname}">Anonymous</cite>
+                            </small>
+                        </div>
+                        <div>
+                            <small>
+                                <cite class="text-muted created-on"
+                                      th:text="|${#dates.format(post.time_posted_epoch, 'MMM dd yyyy')}|"></cite>
+                            </small>
+                        </div>
+                    </footer>
+                </blockquote>
+            </div>
+        </div>
+    </div>
+</div>
+<br><br><br><br><br><br><br><br><br>
+<div th:replace="guest/footer :: footer"></div>
+</body>
+</html>

@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="https://www.thymeleaf.org"
+      xmlns="http://www.w3.org/1999/html">
+<div th:replace="guest/header :: header"></div>
+<body class="view-body">
+<div th:replace="guest/header :: navbar"></div>
+<br><br>
+<div class="container">
+    <div class="row">
+        <div th:replace="guest/search :: search"></div>
+    </div>
+    <br><br>
+    <div class="row">
+        <h2 th:text="${post.post_title}"></h2>
+        <br>
+        <h4><cite th:text="${post.post_summary}"></cite></h4>
+        <hr/>
+        <br>
+        <div th:utext="${post.post_text}">
+        </div>
+        <hr>
+    </div>
+    <br><br><br>
+    <div class="row">
+        <div class="col-md-9">
+            <h3>Comments:</h3>
+            <div th:each = "comment: ${post.comments}">
+                <div>
+                    <p><b>Name: </b><strong th:text="${comment.guest_name}"></strong></p>
+                    <p><b>Date: </b><strong th:text="|${comment.time_posted_epoch} epoch milliseconds|"></strong></p>
+                    <p th:text="${comment.comment_text}"></p>
+                <br>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-header">
+                    <h2>Leave a Comment</h2>
+                </div>
+                <div class="card-body">
+                    <form
+                            role="form"
+                            method="post"
+                            th:action="@{/{post_id}/comments(post_id=${post.post_id})}"
+                            th:object="${comment}"
+                    >
+                        <div class="row">
+                            <div class="col-md-5 mb-3">
+                                <input
+                                        class="form-control"
+                                        name="name"
+                                        id="name"
+                                        placeholder="Enter your name"
+                                        th:field="*{guest_name}"
+                                        type="text"
+                                />
+                                <p th:if="${#fields.hasErrors('guest_name')}" th:errors="*{guest_name}" class="text-danger"></p>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-5 mb-3">
+                                <input
+                                        class="form-control"
+                                        name="email"
+                                        id="email"
+                                        placeholder="Enter your email address"
+                                        th:field="*{guest_email}"
+                                        type="text"
+                                />
+                                <p th:if="${#fields.hasErrors('guest_email')}" th:errors="*{guest_email}" class="text-danger"></p>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-9 mb-3">
+                            <textarea
+                                    class="form-control"
+                                    id="text"
+                                    name="text"
+                                    placeholder="Enter your comment"
+                                    rows="8"
+                                    th:field="*{comment_text}"
+                            >
+                            </textarea>
+                                <p th:if="${#fields.hasErrors('comment_text')}" th:errors="*{comment_text}" class="text-danger"></p>
+
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="form-group col-md-5">
+                                <button
+                                        class="btn btn-primary"
+                                        type="submit"
+                                >
+                                    Submit
+                                </button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <br><br><br><br><br><br><br><br><br>
+</div>
+<div th:replace="guest/footer :: footer"></div>
+</body>
+</html>

@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org"
+>
+<div th:replace="owner/header :: header"></div>
+<body class="view-body">
+<div th:replace="owner/header :: navbar"></div>
+<div class="all-blog-posts">
+    <div class="block-body">
+        <br>
+        <h1>Blog Posts</h1>
+        <br>
+    </div>
+    <div class="row">
+        <div class="col-md-5">
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-4 offset-md-4">
+            <form class="form-inline" th:action="@{/owner/posts/search}">
+                <div class="input-group">
+                    <input class="form-control me-2" type="search" placeholder="Blog Search" name="query"
+                           aria-label="Search">
+                    <span class="input-group-btn">
+                        <button class="btn btn-outline-success" type="submit">Search</button>
+                    </span>
+                </div>
+            </form>
+        </div>
+    </div>
+    <br/>
+    <div class="container">
+        <div class="grid" data-masonry='{ "itemSelector": ".grid-item" }'>
+            <div class="grid-item col-md-3 col mb-2" th:each="post, postStat : ${posts}">
+                <div class="card p-3 h-100">
+                    <blockquote class="blockquote mb-0 h-100 card-body">
+                        <body>
+                        <h6 class="block-body" th:text="${postStat.count}">#</h6>
+                        <h3 class="block-body block-title" th:text="${post.post_title}">Post title</h3>
+                        <p class="block-body" th:text="${post.post_summary}">
+                            Post Summary: This card has supporting text below as a natural lead-in to additional content.
+                        </p>
+                        <br><br><br><br>
+                        <div class="block-buttons">
+                            <a th:href="@{/owner/posts/{post_id}/edit(post_id=${post.post_id})}"
+                               class="btn btn-primary btn-xs">Update</a>
+                            <a th:href="@{/owner/posts/{post_id}/delete(post_id=${post.post_id})}"
+                               class="btn btn-danger btn-xs">Delete</a>
+                            <a th:href="@{/owner/posts/{post_id}/view(post_id=${post.post_id})}"
+                               class="btn btn-info btn-xs">View</a>
+                        </div>
+                        </body>
+                        <footer class="blockquote-footer mb-0 mt-0">
+                            <div>
+                                <small>
+                                    Posted by <cite class="text-muted created-by"
+                                                    th:text="|${post.posted_by.fullname}|">Anonymous</cite>
+                                </small>
+                            </div>
+                            <div>
+                                <small>
+                                    <cite class="text-muted created-on"
+                                          th:text="|${#dates.format(post.time_posted_epoch, 'MMM dd yyyy')}|"></cite>
+                                </small>
+                            </div>
+                        </footer>
+                    </blockquote>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<br><br><br><br><br><br><br><br><br>
+<div th:replace="owner/footer :: footer"></div>
+</body>
+</html>
+
+
+<!--private Integer post_id;-->
+
+<!--private Integer posted_by;-->
+
+<!--private String post_title;-->
+
+<!--private String post_text;-->
+
+<!--private String post_summary;-->
+
+<!--private Long time_posted_epoch;-->
+
+<!--private Long time_updated_epoch;-->
+
+
+<!--POSTS.HTML-->
+<!--==========-->
+
+<!--<div class="card-deck">-->
+<!--    <div class="card">-->
+<!--        <img src="..." class="card-img-top" alt="...">-->
+<!--        <div class="card-body">-->
+<!--            <h5 class="card-title">Card title</h5>-->
+<!--            <p class="card-text">This card has supporting text below as a natural lead-in to additional content.</p>-->
+<!--        </div>-->
+<!--        <div class="card-footer">-->
+<!--            <small class="text-muted">Last updated 3 mins ago</small>-->
+<!--        </div>-->
+<!--    </div>-->
+<!--</div>-->
+
+
+<!--COMMENTS.HTML-->
+<!--=============-->
+
+<!--<div class="card-columns">-->
+<!--    <div class="card p-3">-->
+<!--        <blockquote class="blockquote mb-0 card-body">-->
+<!--            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer posuere erat a ante.</p>-->
+<!--            <footer class="blockquote-footer">-->
+<!--                <small class="text-muted">-->
+<!--                    Someone famous in <cite title="Source Title">Source Title</cite>-->
+<!--                </small>-->
+<!--            </footer>-->
+<!--        </blockquote>-->
+<!--    </div>-->
+<!--</div>-->
+
+<!--<div class="card" style="width: 18rem;">-->
+<!--    <div class="card-body">-->
+<!--        <h5 class="card-title">Card title</h5>-->
+<!--        <h6 class="card-subtitle mb-2 text-muted">Card subtitle</h6>-->
+<!--        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>-->
+<!--        <a href="#" class="card-link">Card link</a>-->
+<!--        <a href="#" class="card-link">Another link</a>-->
+<!--    </div>-->
+<!--</div>-->

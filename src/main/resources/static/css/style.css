@@ -1,0 +1,54 @@
+/* HEADER */
+
+.nav-item {
+    border: initial;
+    background-color: initial
+}
+
+/* BODY */
+
+.view-body {
+    position: relative
+}
+
+.view-height {
+    height: 100vh
+}
+
+.card {
+    flex: 1 auto;
+    margin: auto 4px
+}
+
+.card-body {
+    display: flex;
+    flex-direction: column
+}
+
+.block-body {
+    text-align: center
+}
+
+.block-title {
+    text-decoration: none
+}
+
+.block-body__link {
+    font-size: 14px
+}
+
+.block-buttons {
+    display: flex;
+    justify-content: space-evenly;
+    column-gap: 10px;
+    margin-top: auto
+}
+
+/* FOOTER */
+
+.footer-body {
+    position: absolute;
+    bottom: 0;
+    width: 100vw;
+    margin-top: auto
+}

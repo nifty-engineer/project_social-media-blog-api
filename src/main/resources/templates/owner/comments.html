@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en"
+  xmlns:th="https://www.thymeleaf.org"
+>
+<div th:replace="owner/header :: header"></div>
+<body class="view-body">
+<div th:replace="owner/header :: navbar"></div>
+<div class="container">
+  <div class="row">
+    <h1>All Comments</h1>
+  </div>
+  <br>
+  <table class="table table-striped table-hover table-bordered">
+    <thead class="table-dark">
+    <tr>
+      <th>#</th>
+      <th>Email</th>
+      <th>Comment</th>
+      <th>Created Date</th>
+      <th>Actions</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each = "comment, iterStat : ${comments}">
+      <td th:text="${iterStat.count}"></td>
+      <td th:text="${comment.guest_email}"></td>
+      <td th:text="${comment.comment_text}"></td>
+      <td th:text="${comment.time_posted_epoch}"></td>
+      <td>
+        <a class="btn btn-danger"
+           th:href="@{/owner/posts/comments/{comment_id}(comment_id=${comment.comment_id})}"
+        >
+          Delete
+        </a>
+      </td>
+    </tr>
+    </tbody>
+  </table>
+</div>
+<br><br><br><br><br><br><br><br><br>
+<div th:replace="owner/footer :: footer"></div>
+</body>
+</html>
