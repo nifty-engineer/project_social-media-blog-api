@@ -16,8 +16,11 @@
         <form role="form" method="post" th:action="@{/owner/posts/{post_id}(post_id=${post.post_id})}" th:object="${post}">
 <!--        <form role="form" onsubmit="updatePostUsingPatch()">-->
           <input type="hidden" th:field="*{posted_by}">
-          <input type="hidden" th:field="*{time_posted_epoch}">
-          <div class="mb-3">
+          <input type="hidden" th:if="${post.time_updated_epoch == null}" th:field="*{time_posted_epoch}">
+          <input type="hidden" th:if="${post.time_posted_epoch == post.time_updated_epoch}" th:field="*{time_posted_epoch}">
+          <input type="hidden" th:if="${post.time_posted_epoch < post.time_updated_epoch}" th:field="*{time_updated_epoch}">
+
+            <div class="mb-3">
             <label class="form-label">Title</label>
             <input
                     type="text"

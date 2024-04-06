@@ -35,8 +35,12 @@
                         </div>
                         <div>
                             <small>
-                                <cite class="text-muted created-on"
+                                <cite class="text-muted created-on" th:if="${post.time_updated_epoch == null}"
                                       th:text="|${#dates.format(post.time_posted_epoch, 'MMM dd yyyy')}|"></cite>
+                                <cite class="text-muted created-on" th:if="${post.time_posted_epoch == post.time_updated_epoch}"
+                                      th:text="|${#dates.format(post.time_posted_epoch, 'MMM dd yyyy')}|"></cite>
+                                <cite class="text-muted created-on" th:if="${post.time_posted_epoch < post.time_updated_epoch}"
+                                      th:text="|edited on ${#dates.format(post.time_updated_epoch, 'MMM dd yyyy')}|"></cite>
                             </small>
                         </div>
                     </footer>
