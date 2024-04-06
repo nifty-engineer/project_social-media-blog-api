@@ -28,7 +28,8 @@
             <div th:each = "comment: ${post.comments}">
                 <div>
                     <p><b>Name: </b><strong th:text="${comment.guest_name}"></strong></p>
-                    <p><b>Date: </b><strong th:text="|${comment.time_posted_epoch} epoch milliseconds|"></strong></p>
+
+                    <p><b>Date: </b><strong th:text="|${#dates.format(comment.time_posted_epoch, 'MMM dd yyyy')}|"></strong></p>
                     <p th:text="${comment.comment_text}"></p>
                 <br>
                 </div>

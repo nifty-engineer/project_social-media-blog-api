@@ -32,14 +32,27 @@ public class Comment {
 
 
     @Column
+    @Setter(AccessLevel.NONE)
     private Long time_posted_epoch;
 
     @Column(name = "time_updated_epoch")
+    @Setter(AccessLevel.NONE)
     private Long time_updated_epoch;
 
     @ManyToOne
     @JoinColumn(name = "post_id")
     @NotNull
     private Post post;
+
+    @PrePersist
+    protected void setTime_posted_epoch() {
+        this.time_posted_epoch = System.currentTimeMillis();
+        this.time_updated_epoch = System.currentTimeMillis();
+    }
+
+    @PreUpdate
+    protected void setTime_updated_epoch() {
+        this.time_updated_epoch = System.currentTimeMillis();
+    }
 
 }

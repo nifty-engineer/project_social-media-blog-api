@@ -201,7 +201,7 @@ public class Post {
      * Properly named getters and setters are necessary for Jackson ObjectMapper to work. You may use them as well.
 //     * @param time_posted_epoch
      */
-//    @PrePersist
+    @PrePersist
     protected void setTime_posted_epoch() {
         this.time_posted_epoch = System.currentTimeMillis();
         this.time_updated_epoch = System.currentTimeMillis();
@@ -218,7 +218,7 @@ public class Post {
      * Properly named getters and setters are necessary for Jackson ObjectMapper to work. You may use them as well.
 //     * @param time_updated_epoch
      */
-//    @PreUpdate
+    @PreUpdate
     protected void setTime_updated_epoch() {
         this.time_updated_epoch = System.currentTimeMillis();
     }

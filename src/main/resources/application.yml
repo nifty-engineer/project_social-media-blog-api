@@ -9,9 +9,10 @@ spring:
       ddl-auto: update
     properties:
       hibernate:
-        dialect: org.hibernate.dialect.PostgreSQLDialect
-    show-sql: true
-    format-sql: true
+        show-sql: true
+        format-sql: true
+      dialect:
+        hibernate: org.hibernate.dialect.PostgreSQLDialect
     defer-datasource-initialization: true
   security:
     user:
