@@ -26,13 +26,13 @@ public class PostController {
         this.commentService = commentService;
     }
 
-    @GetMapping("/owner/posts")
+    @GetMapping("/admin/posts")
     public String posts(Model model) {
 
         String role = SecurityUtils.getRole().toUpperCase();
 
         List<PostDTO> posts = null;
-        if (ROLE.OWNER.name().equals(role)) {
+        if (ROLE.ADMIN.name().equals(role)) {
             posts = postService.retrieveAllPosts();
         }
         else {
@@ -40,16 +40,16 @@ public class PostController {
         }
         model.addAttribute("posts", posts);
 
-        return "/owner/posts";
+        return "/admin/posts";
     }
 
-    @GetMapping("/owner/posts/comments")
+    @GetMapping("/admin/posts/comments")
     public String allComments(Model model) {
 
         String role = SecurityUtils.getRole().toUpperCase();
         List<CommentDTO> comments = null;
 
-        if (ROLE.OWNER.name().equals(role)) {
+        if (ROLE.ADMIN.name().equals(role)) {
             comments = commentService.retrieveAllComments();
         }
         else {
@@ -57,46 +57,46 @@ public class PostController {
         }
 
         model.addAttribute("comments", comments);
-        return "owner/comments";
+        return "admin/comments";
     }
 
-    @GetMapping("/owner/posts/comments/{comment_id}")
+    @GetMapping("/admin/posts/comments/{comment_id}")
     public String deleteComment(@PathVariable Integer comment_id) {
 
         commentService.deleteComment(comment_id);
-        return "redirect:/owner/posts/comments";
+        return "redirect:/admin/posts/comments";
     }
 
-    @GetMapping("owner/posts/newpost")
+    @GetMapping("admin/posts/newpost")
     public String newPostForm(Model model) { // change to createPostForm
         PostDTO postDTO = new PostDTO();
         model.addAttribute("post", postDTO);
-        return "owner/create-post-form";
+        return "admin/create-post-form";
     }
 
-    @PostMapping("/owner/posts")
+    @PostMapping("/admin/posts")
     public String createPost(@Valid @ModelAttribute("post") PostDTO postDTO,
                              BindingResult bindingResult,
                              Model model) {
 
         if (bindingResult.hasErrors()) {
             model.addAttribute("post", postDTO);
-            return "owner/create-post-form";
+            return "admin/create-post-form";
         }
 
         postService.createPost(postDTO);
-        return "redirect:/owner/posts";
+        return "redirect:/admin/posts";
     }
 
-    @GetMapping("/owner/posts/{post_id}/edit")
+    @GetMapping("/admin/posts/{post_id}/edit")
     public String updatePostForm(@PathVariable Integer post_id,
                                  Model model) {
         PostDTO postDTO = postService.retrievePostByPostId(post_id);
         model.addAttribute("post", postDTO);
-        return "owner/update-post-form";
+        return "admin/update-post-form";
     }
 
-    @PostMapping("/owner/posts/{post_id}")
+    @PostMapping("/admin/posts/{post_id}")
     public String updatePost(@PathVariable Integer post_id,
                              @Valid @ModelAttribute("post") PostDTO post,
                              BindingResult result,
@@ -104,35 +104,35 @@ public class PostController {
 
         if (result.hasErrors()) {
             model.addAttribute("post", post);
-            return "owner/update-post-form";
+            return "admin/update-post-form";
         }
 
         post.setPost_id(post_id);
         postService.updatePost(post);
-        return "redirect:/owner/posts";
+        return "redirect:/admin/posts";
     }
 
-    @GetMapping("/owner/posts/{post_id}/delete")
+    @GetMapping("/admin/posts/{post_id}/delete")
     public String deletePostByPostId(@PathVariable Integer post_id) {
         postService.deletePostByPostId(post_id);
-        return "redirect:/owner/posts";
+        return "redirect:/admin/posts";
     }
 
-    @GetMapping("/owner/posts/{post_id}/view")
+    @GetMapping("/admin/posts/{post_id}/view")
     public String viewPost(@PathVariable Integer post_id,
                            Model model) {
         PostDTO postDTO = postService.retrievePostByPostId(post_id);
         model.addAttribute("post", postDTO);
-        return "owner/view-post";
+        return "admin/view-post";
     }
 
-    // localhost:8080/owner/posts/search?query=java
-    @GetMapping("/owner/posts/search")
+    // localhost:8080/admin/posts/search?query=java
+    @GetMapping("/admin/posts/search")
     public String searchPosts(@RequestParam String query,
                               Model model) {
 
         List<PostDTO> posts = postService.searchPosts(query);
         model.addAttribute("posts", posts);
-        return "owner/posts";
+        return "admin/posts";
     }
 }

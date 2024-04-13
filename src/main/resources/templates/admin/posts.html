@@ -2,9 +2,9 @@
 <html lang="en"
       xmlns:th="http://www.thymeleaf.org"
 >
-<div th:replace="owner/header :: header"></div>
+<div th:replace="admin/header :: header"></div>
 <body class="view-body">
-<div th:replace="owner/header :: navbar"></div>
+<div th:replace="admin/header :: navbar"></div>
 <div class="all-blog-posts">
     <div class="block-body">
         <br>
@@ -17,7 +17,7 @@
     </div>
     <div class="row">
         <div class="col-md-4 offset-md-4">
-            <form class="form-inline" th:action="@{/owner/posts/search}">
+            <form class="form-inline" th:action="@{/admin/posts/search}">
                 <div class="input-group">
                     <input class="form-control me-2" type="search" placeholder="Blog Search" name="query"
                            aria-label="Search">
@@ -42,11 +42,11 @@
                         </p>
                         <br><br><br><br>
                         <div class="block-buttons">
-                            <a th:href="@{/owner/posts/{post_id}/edit(post_id=${post.post_id})}"
+                            <a th:href="@{/admin/posts/{post_id}/edit(post_id=${post.post_id})}"
                                class="btn btn-primary btn-xs">Update</a>
-                            <a th:href="@{/owner/posts/{post_id}/delete(post_id=${post.post_id})}"
+                            <a th:href="@{/admin/posts/{post_id}/delete(post_id=${post.post_id})}"
                                class="btn btn-danger btn-xs">Delete</a>
-                            <a th:href="@{/owner/posts/{post_id}/view(post_id=${post.post_id})}"
+                            <a th:href="@{/admin/posts/{post_id}/view(post_id=${post.post_id})}"
                                class="btn btn-info btn-xs">View</a>
                         </div>
                         </body>
@@ -76,65 +76,6 @@
     </div>
 </div>
 <br><br><br><br><br><br><br><br><br>
-<div th:replace="owner/footer :: footer"></div>
+<div th:replace="admin/footer :: footer"></div>
 </body>
 </html>
-
-
-<!--private Integer post_id;-->
-
-<!--private Integer posted_by;-->
-
-<!--private String post_title;-->
-
-<!--private String post_text;-->
-
-<!--private String post_summary;-->
-
-<!--private Long time_posted_epoch;-->
-
-<!--private Long time_updated_epoch;-->
-
-
-<!--POSTS.HTML-->
-<!--==========-->
-
-<!--<div class="card-deck">-->
-<!--    <div class="card">-->
-<!--        <img src="..." class="card-img-top" alt="...">-->
-<!--        <div class="card-body">-->
-<!--            <h5 class="card-title">Card title</h5>-->
-<!--            <p class="card-text">This card has supporting text below as a natural lead-in to additional content.</p>-->
-<!--        </div>-->
-<!--        <div class="card-footer">-->
-<!--            <small class="text-muted">Last updated 3 mins ago</small>-->
-<!--        </div>-->
-<!--    </div>-->
-<!--</div>-->
-
-
-<!--COMMENTS.HTML-->
-<!--=============-->
-
-<!--<div class="card-columns">-->
-<!--    <div class="card p-3">-->
-<!--        <blockquote class="blockquote mb-0 card-body">-->
-<!--            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer posuere erat a ante.</p>-->
-<!--            <footer class="blockquote-footer">-->
-<!--                <small class="text-muted">-->
-<!--                    Someone famous in <cite title="Source Title">Source Title</cite>-->
-<!--                </small>-->
-<!--            </footer>-->
-<!--        </blockquote>-->
-<!--    </div>-->
-<!--</div>-->
-
-<!--<div class="card" style="width: 18rem;">-->
-<!--    <div class="card-body">-->
-<!--        <h5 class="card-title">Card title</h5>-->
-<!--        <h6 class="card-subtitle mb-2 text-muted">Card subtitle</h6>-->
-<!--        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>-->
-<!--        <a href="#" class="card-link">Card link</a>-->
-<!--        <a href="#" class="card-link">Another link</a>-->
-<!--    </div>-->
-<!--</div>-->

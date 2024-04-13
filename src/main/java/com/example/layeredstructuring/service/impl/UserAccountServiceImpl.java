@@ -31,11 +31,11 @@ public class UserAccountServiceImpl implements UserAccountService {
 
         UserAccount userAccount = new UserAccount();
         userAccount.setFullname(signupDTO.getFirstName() + " " +
-                        signupDTO.getLastName());
+          signupDTO.getLastName());
         userAccount.setEmail(signupDTO.getEmail());
         // long term goal is to use spring security to encrypt the password
         userAccount.setPassword(passwordEncoder.encode(signupDTO.getPassword()));
-        UserRole userRole = userRoleRepository.findByName("guest");
+        UserRole userRole = userRoleRepository.findByName("BLOGGER");
         userAccount.setRoles(Arrays.asList(userRole));
         userAccountRepository.save(userAccount);
     }

@@ -2,9 +2,9 @@
 <html lang="en"
       xmlns:th="https://www.thymeleaf.org"
 >
-<div th:replace="owner/header :: header"></div>
+<div th:replace="admin/header :: header"></div>
 <body class="view-body">
-<div th:replace="owner/header :: navbar"></div>
+<div th:replace="admin/header :: navbar"></div>
 <br /><br />
 <div class="container">
   <div class="row col-md-8 offset-md-2">
@@ -13,7 +13,7 @@
         <h2 class="text-center">Update Post</h2>
       </div>
       <div class="card-body">
-        <form role="form" method="post" th:action="@{/owner/posts/{post_id}(post_id=${post.post_id})}" th:object="${post}">
+        <form role="form" method="post" th:action="@{/admin/posts/{post_id}(post_id=${post.post_id})}" th:object="${post}">
 <!--        <form role="form" onsubmit="updatePostUsingPatch()">-->
           <input type="hidden" th:field="*{posted_by}">
           <input type="hidden" th:if="${post.time_updated_epoch == null}" th:field="*{time_posted_epoch}">
@@ -65,7 +65,7 @@
   </div>
 </div>
 <br><br><br><br><br><br><br><br><br>
-<div th:replace="owner/footer :: footer"></div>
+<div th:replace="admin/footer :: footer"></div>
 <script src="https://code.jquery.com/jquery-3.7.1.min.js"
         integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo="
         crossorigin="anonymous"></script>
@@ -86,7 +86,7 @@
           function(event) {
           event.preventDefault();
           try {
-          const response = await fetch("/owner/posts/{post_id}", {
+          const response = await fetch("/admin/posts/{post_id}", {
             method: "PATCH",
             headers: {
              "Content-Type": "application/json",

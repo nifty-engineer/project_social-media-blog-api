@@ -2,9 +2,9 @@
 <html lang="en"
   xmlns:th="https://www.thymeleaf.org"
 >
-<div th:replace="owner/header :: header"></div>
+<div th:replace="admin/header :: header"></div>
 <body class="view-body">
-<div th:replace="owner/header :: navbar"></div>
+<div th:replace="admin/header :: navbar"></div>
 <div class="container">
   <div class="row">
     <h1>All Comments</h1>
@@ -28,7 +28,7 @@
       <td th:text="${comment.time_posted_epoch}"></td>
       <td>
         <a class="btn btn-danger"
-           th:href="@{/owner/posts/comments/{comment_id}(comment_id=${comment.comment_id})}"
+           th:href="@{/admin/posts/comments/{comment_id}(comment_id=${comment.comment_id})}"
         >
           Delete
         </a>
@@ -38,6 +38,6 @@
   </table>
 </div>
 <br><br><br><br><br><br><br><br><br>
-<div th:replace="owner/footer :: footer"></div>
+<div th:replace="admin/footer :: footer"></div>
 </body>
 </html>

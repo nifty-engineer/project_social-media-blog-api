@@ -16,9 +16,9 @@ spring:
     defer-datasource-initialization: true
   security:
     user:
-      name: admin
-      password: adminsite
-      roles: guest
+      name: user
+      password: user
+      roles: BLOGGER
 
 
 
