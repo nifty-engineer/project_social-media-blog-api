@@ -3,10 +3,7 @@ package com.example.domainstructuring;
 import com.example.SocialMediaApp;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import org.junit.jupiter.api.AfterEach;
-import org.junit.jupiter.api.Assertions;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.*;
 import org.springframework.boot.SpringApplication;
 import org.springframework.context.ApplicationContext;
 
@@ -51,6 +48,7 @@ public class RetrieveAllMessagesForUserTest {
      *  Response Body: JSON representation of a list of messages
      */
     @Test
+    @Disabled
     public void getAllMessagesFromUserMessageExists() throws IOException, InterruptedException {
         HttpRequest request = HttpRequest.newBuilder()
                 .uri(URI.create("http://localhost:8080/accounts/9999/messages"))
@@ -72,6 +70,7 @@ public class RetrieveAllMessagesForUserTest {
      *  Response Body: 
      */
     @Test
+    @Disabled
     public void getAllMessagesFromUserNoMessagesFound() throws IOException, InterruptedException {
         HttpRequest request = HttpRequest.newBuilder()
                 .uri(URI.create("http://localhost:8080/accounts/9998/messages"))

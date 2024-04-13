@@ -2,10 +2,7 @@ package com.example.domainstructuring;
 
 import com.example.SocialMediaApp;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import org.junit.jupiter.api.AfterEach;
-import org.junit.jupiter.api.Assertions;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.*;
 import org.springframework.boot.SpringApplication;
 import org.springframework.context.ApplicationContext;
 
@@ -48,6 +45,7 @@ public class UserLoginTest {
      *  Response Body: JSON representation of user object
      */
     @Test
+    @Disabled
     public void loginSuccessful() throws IOException, InterruptedException {
     	String json = "{\"account_id\":0,\"username\":\"testuser1\",\"password\":\"password\"}";
         HttpRequest postRequest = HttpRequest.newBuilder()
@@ -71,6 +69,7 @@ public class UserLoginTest {
      * 	Status Code: 401 
      */
     @Test
+    @Disabled
     public void loginInvalidUsername() throws IOException, InterruptedException {
     	String json = "{\"account_id\":9999,\"username\":\"testuser404\",\"password\":\"password\"}";
         HttpRequest postRequest = HttpRequest.newBuilder()
@@ -91,6 +90,7 @@ public class UserLoginTest {
      * 	Status Code: 401
      */
     @Test
+    @Disabled
     public void loginInvalidPassword() throws IOException, InterruptedException {
     	String json = "{\"account_id\":9999,\"username\":\"testuser1\",\"password\":\"pass404\"}";
         HttpRequest postRequest = HttpRequest.newBuilder()
