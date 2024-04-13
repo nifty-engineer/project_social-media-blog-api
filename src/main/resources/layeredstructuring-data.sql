@@ -44,10 +44,10 @@ create table comment (
 
 insert into users (useraccount_id, fullname, email, password) values
 (9999, 'admin', 'admin@admin.com', '$2a$10$k9644mshajjDvMhU8p76.u4sgOFuINZDkZ/csNgzFY99W1diZjBuC'),
-(9998, 'poster two', 'poster@two.com', 'two'),
-(9997, 'poster three', 'poster@three.com', 'three'),
-(9996, 'poster four', 'poster@four.com', 'four'),
-(9995, 'poster five', 'poster@five.com', 'five');
+(9998, 'blogger two', 'blogger@two.com', '$2a$10$8cXy77fgt6GMBtI/RciexeJR7rkWRX8Q0Bol2mqoVYXa2/zmoONNG'),
+(9997, 'blogger three', 'blogger@three.com', '$2a$10$HLp3pNwYKgHwYfxpch3id.Tv2yDvUwDBXKGwh/e7xoKBdLPbJ8kHm'),
+(9996, 'blogger four', 'blogger@four.com', '$2a$10$tVwU7jUwB36ug2goiHRVkeJxTy/CfLJ4NFttTf7z3o9JdiCbAoUdy'),
+(9995, 'blogger five', 'blogger@five.com', '$2a$10$lYvneWkWNZnvaRWMtRZVkeSwTIWV5oUkNDDn9SaJtKr0ivDiURK8q');
 insert into roles values (1, 'ADMIN'), (2, 'BLOGGER');
 insert into users_roles(fk_useraccount_id, fk_role_id) values
 (9999, 1), (9998, 2), (9997, 2), (9996, 2), (9995, 2);
