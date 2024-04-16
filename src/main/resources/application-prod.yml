@@ -1,0 +1,7 @@
+#
+# Load Spring DataSource properties
+# from AWS Parameter Store
+#
+spring:
+  config:
+    import: aws-parameterstore:/config/socialmediablogapi-db
